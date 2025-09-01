@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Send Money – PathaoPay Demo</title>
+  <title>Send Money – tkash Payment Demo</title>
   <style>
     :root{
-      --magenta:#c2185b;          /* title & button color (bkash-like) */
+      --magenta:#c2185b;
       --magenta-dark:#9d1448;
       --text:#222;
       --muted:#666;
@@ -31,20 +31,13 @@
       max-width:420px;
     }
 
-    /* simple text logo */
     .logo{
       display:flex;
-      align-items:center;
-      gap:10px;
-      margin-bottom:16px;
       justify-content:center;
-      user-select:none;
+      margin-bottom:16px;
     }
-    .logo svg{height:28px}
-    .logo .word{
-      font-weight:800;
-      letter-spacing:.2px;
-      font-size:22px;
+    .logo img{
+      max-height:50px;
     }
 
     .card{
@@ -100,7 +93,7 @@
       border:1px solid var(--ring);
       padding:0 14px;
       font-size:20px;
-      letter-spacing:6px;          /* spaced ••••• */
+      letter-spacing:6px;
       text-align:center;
       outline:none;
       transition:border .15s ease, box-shadow .15s ease;
@@ -149,23 +142,19 @@
 </head>
 <body>
   <div class="wrap">
-    <!-- PathaoPay logo (inline SVG, no external asset needed) -->
-    <div class="logo" aria-label="PathaoPay">
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="2"></circle>
-        <path d="M7 12h10M12 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-      </svg>
-      <div class="word">PathaoPay</div>
+    <!-- tkash logo -->
+    <div class="logo">
+      <img src="tkash-logo.png" alt="tkash Payment Logo">
     </div>
 
     <div class="card">
       <h1>Send Money</h1>
 
       <div class="kv" role="group" aria-label="Payment details">
-        <div class="row"><div class="k">To:</div><div class="v">Smart Docking</div></div>
+        <div class="row"><div class="k">To:</div><div class="v">Smart Car Rental</div></div>
         <div class="row"><div class="k">Mobile Number:</div><div class="v">01XXXXXXXXX</div></div>
         <div class="row"><div class="k">Amount:</div><div class="v">৳500.00</div></div>
-        <div class="row"><div class="k">Reference:</div><div class="v">Bike 01</div></div>
+        <div class="row"><div class="k">Reference:</div><div class="v">Car 01</div></div>
         <div class="row"><div class="k">Counter:</div><div class="v">#001</div></div>
       </div>
 
@@ -191,9 +180,7 @@
     const btn = document.getElementById('proceedBtn');
     const hint = document.getElementById('hint');
 
-    // Only allow digits & enable button when exactly 5
     pin.addEventListener('input', (e) => {
-      // strip non-digits
       const digits = e.target.value.replace(/\D/g, '').slice(0,5);
       if (digits !== e.target.value) e.target.value = digits;
 
@@ -207,7 +194,6 @@
     });
 
     btn.addEventListener('click', () => {
-      // In real life, never alert the PIN. This is a demo.
       alert('PIN accepted. (Demo only)');
     });
   </script>
