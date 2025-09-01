@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5-Pin Password Input</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .input-group {
+      margin-bottom: 20px;
+    }
+    input[type="password"] {
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      font-size: 20px;
+      margin: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:disabled {
+      background-color: #ccc;
+    }
+    p {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Enter 5-Pin Password</h2>
+    <div class="input-group">
+      <input type="password" id="pin1" maxlength="1" oninput="checkPin()">
+      <input type="password" id="pin2" maxlength="1" oninput="checkPin()">
+      <input type="password" id="pin3" maxlength="1" oninput="checkPin()">
+      <input type="password" id="pin4" maxlength="1" oninput="checkPin()">
+      <input type="password" id="pin5" maxlength="1" oninput="checkPin()">
+    </div>
+    <button id="submitBtn" disabled onclick="submitPin()">Submit</button>
+    <p id="errorMessage" style="display: none;">Please enter a 5-digit pin.</p>
+  </div>
+
+  <script>
+    function checkPin() {
+      const pinInputs = document.querySelectorAll('input[type="password"]');
+      const submitBtn = document.getElementById("submitBtn");
+      let allFilled = true;
+
+      pinInputs.forEach(input => {
+        if (input.value === "") {
+          allFilled = false;
+        }
+      });
+
+      if (allFilled) {
+        submitBtn.disabled = false;
+        document.getElementById("errorMessage").style.display = "none";
+      } else {
+        submitBtn.disabled = true;
+        document.getElementById("errorMessage").style.display = "none";
+      }
+    }
+
+    function submitPin() {
+      const pinInputs = document.querySelectorAll('input[type="password"]');
+      const pin = Array.from(pinInputs).map(input => input.value).join("");
+
+      if (pin.length === 5) {
+        alert("Password successfully submitted: " + pin);
+      } else {
+        document.getElementById("errorMessage").style.display = "block";
+      }
+    }
+  </script>
+
+</body>
+</html>
